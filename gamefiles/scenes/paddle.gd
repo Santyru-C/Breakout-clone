@@ -13,7 +13,7 @@ func get_input ():
 		direction.x = -1
 		print(-1)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	get_input()
 	velocity = (direction * speed)
 	velocity = move_and_slide(velocity)
