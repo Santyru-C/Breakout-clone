@@ -7,7 +7,7 @@
 extents = Vector2( 87, 7.5 )
 
 [node name="paddle" type="KinematicBody2D"]
-position = Vector2( 500, 280 )
+position = Vector2( 510, 540 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
