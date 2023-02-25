@@ -20,6 +20,8 @@ func _physics_process(delta):
 	
 	if collides:
 		direction = direction.bounce(collides.normal)
+		if "brick" in collides.collider.get_name():
+			collides.collider.queue_free()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
