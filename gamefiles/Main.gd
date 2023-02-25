@@ -1,7 +1,6 @@
 extends Node
 
 var ball_scene = load("res://scenes/ball.tscn")
-var ball = ball_scene.instance()
 
 func place_bricks():
 	var position_y = 25
@@ -18,12 +17,18 @@ func place_bricks():
 			add_child(brick)
 			
 		position_y += 23
+
+func call_for_ball():
+	var ball = ball_scene.instance()
+	call_deferred("add_child", ball)
 	
 func _ready():
-	add_child(ball)
+	call_for_ball()
 	place_bricks()
 
+func _on_paddle_life_depleted():
+	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _on_Area2D_body_exited(ball):
+	ball.queue_free()
+	call_for_ball()
