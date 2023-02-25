@@ -74,6 +74,25 @@ __meta__ = {
 position = Vector2( 0.5, 0 )
 shape = SubResource( 2 )
 
+[node name="life_display" type="Label" parent="."]
+margin_left = 125.0
+margin_top = 550.0
+margin_right = 275.0
+margin_bottom = 580.0
+text = "Test text"
+align = 1
+valign = 1
+
+[node name="score_display" type="Label" parent="."]
+margin_left = 750.0
+margin_top = 550.0
+margin_right = 900.0
+margin_bottom = 580.0
+text = "0"
+align = 1
+valign = 1
+
 [connection signal="life_depleted" from="paddle" to="." method="_on_paddle_life_depleted"]
+[connection signal="life_down" from="paddle" to="." method="_on_paddle_life_down"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
 [connection signal="body_exited" from="Area2D" to="paddle" method="_on_Area2D_ball_exited"]

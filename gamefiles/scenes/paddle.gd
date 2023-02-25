@@ -1,6 +1,7 @@
 extends KinematicBody2D
 export(int) var speed = 400
 signal life_depleted
+signal life_down
 
 var lifes = 3
 var direction = Vector2()
@@ -28,4 +29,5 @@ func _ready():
 
 func _on_Area2D_ball_exited(_body):
 	lifes -= 1
+	emit_signal("life_down")
 	life_check()

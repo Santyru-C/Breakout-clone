@@ -2,6 +2,11 @@ extends Node
 
 var ball_scene = load("res://scenes/ball.tscn")
 
+func update_life_display():
+	var format_text = "Lifes: %s"
+	var player_lifes = $paddle.lifes
+	$life_display.text = format_text % str(player_lifes)
+
 func place_bricks():
 	var position_y = 25
 	for m in 8:
@@ -25,6 +30,7 @@ func call_for_ball():
 func _ready():
 	call_for_ball()
 	place_bricks()
+	update_life_display()
 
 func _on_paddle_life_depleted():
 	pass # Replace with function body.
@@ -32,3 +38,6 @@ func _on_paddle_life_depleted():
 func _on_Area2D_body_exited(ball):
 	ball.queue_free()
 	call_for_ball()
+
+func _on_paddle_life_down():
+	update_life_display()
