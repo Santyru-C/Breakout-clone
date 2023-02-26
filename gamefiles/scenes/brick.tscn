@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 48.5, 10 )
 
-[node name="brick" type="StaticBody2D"]
+[node name="brick" type="StaticBody2D" groups=["bricks"]]
 position = Vector2( 465, 291 )
 __meta__ = {
 "_edit_group_": true
