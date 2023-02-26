@@ -1,0 +1,38 @@
+[gd_scene format=2]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="life_display" type="Label" parent="."]
+margin_left = 125.0
+margin_top = 550.0
+margin_right = 275.0
+margin_bottom = 580.0
+text = "Test text"
+align = 1
+valign = 1
+
+[node name="score_display" type="Label" parent="."]
+margin_left = 750.0
+margin_top = 550.0
+margin_right = 900.0
+margin_bottom = 580.0
+text = "0"
+align = 1
+valign = 1
+
+[node name="start_button" type="Button" parent="."]
+margin_left = 472.0
+margin_top = 425.0
+margin_right = 552.0
+margin_bottom = 455.0
+text = "Start Game"
+
+[node name="main_display" type="Label" parent="."]
+margin_left = 92.0
+margin_top = 50.0
+margin_right = 942.0
+margin_bottom = 200.0
+text = "Breakout
+"
+align = 1
+valign = 1
