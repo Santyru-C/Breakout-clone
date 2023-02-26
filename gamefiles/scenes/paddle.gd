@@ -28,6 +28,5 @@ func _ready():
 
 
 func _on_Area2D_ball_exited(_body):
-	lifes -= 1
 	emit_signal("life_down")
 	life_check()
