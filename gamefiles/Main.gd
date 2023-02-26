@@ -1,7 +1,7 @@
 extends Node
 
 var ball_scene = load("res://scenes/ball.tscn")
-
+var score = 0
 func update_life_display():
 	var format_text = "Lifes: %s"
 	var player_lifes = $paddle.lifes
@@ -9,7 +9,7 @@ func update_life_display():
 	
 func place_bricks():
 	var position_y = 25
-	for m in 8:
+	for row in 8:
 		var position_x = 62
 		for n in 10:
 			var brick_scene = load("res://scenes/brick.tscn")
@@ -33,16 +33,10 @@ func reset_properties():
 	$paddle.lifes = 3
 	$paddle.speed = 400
 	$HUD/score_display.text = "0"
-	get_tree().call_group("bricks", "queue_free")
-
-func toggle_start_button():
-	if $HUD/start_button.is_visible_in_tree(): #There's no ternary operator in GDScript
-		$HUD/start_button.hide()
-	else:
-		$HUD/start_button.show()
 	
 func new_game():
-	toggle_start_button()
+	$HUD.toggle_start_button()
+	$HUD.toggle_main_display()
 	reset_properties()
 	place_bricks()
 	update_life_display()
@@ -50,7 +44,10 @@ func new_game():
 
 func game_over():
 	$paddle.speed = 0
-	toggle_start_button()
+	get_tree().call_group("bricks", "queue_free")
+	$HUD/main_display.text = "Game Over!"
+	$HUD.toggle_start_button()
+	$HUD.toggle_main_display()
 	
 func _ready():
 	pass

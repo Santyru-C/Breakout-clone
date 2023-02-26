@@ -1,16 +1,20 @@
 extends CanvasLayer
+signal start_game
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$main_display.text = "Breakout!"
 
+func toggle_start_button():
+	if $start_button.is_visible_in_tree(): #There's no ternary operator in GDScript
+		$start_button.hide()
+	else:
+		$start_button.show()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func toggle_main_display():
+	if $main_display.is_visible_in_tree():
+		$main_display.hide()
+	else:
+		$main_display.show()
+		
+func _on_start_button_pressed():
+	emit_signal("start_game")

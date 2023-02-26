@@ -82,3 +82,4 @@ shape = SubResource( 2 )
 [connection signal="life_down" from="paddle" to="." method="_on_paddle_life_down"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
 [connection signal="body_exited" from="Area2D" to="paddle" method="_on_Area2D_ball_exited"]
+[connection signal="start_game" from="HUD" to="." method="new_game"]
