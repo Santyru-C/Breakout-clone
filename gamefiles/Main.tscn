@@ -92,6 +92,12 @@ text = "0"
 align = 1
 valign = 1
 
+[node name="Button" type="Button" parent="."]
+margin_left = 503.0
+margin_top = 367.0
+margin_right = 515.0
+margin_bottom = 387.0
+
 [connection signal="life_depleted" from="paddle" to="." method="_on_paddle_life_depleted"]
 [connection signal="life_down" from="paddle" to="." method="_on_paddle_life_down"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
