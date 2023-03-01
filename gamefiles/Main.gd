@@ -36,8 +36,23 @@ func generate_brick_wall():
 			place_brick(brick, position_x, position_y)
 		position_y += 23
 
+func get_score(brick):
+	var brick_scores = {
+						"yellow_brick": 1,
+						"green_brick" : 3,
+						"orange_brick": 5,
+						"red_brick": 7}
+						
+	return brick_scores[brick]
+	
+func update_score(destroyed_brick):
+	var brick = destroyed_brick.get_name().get_slice("@", 1)
+	score += get_score(brick)
+	$HUD/score_display.text = str(score)
+	
 func call_for_ball():
 	var ball = ball_scene.instance()
+	ball.connect("ball_collided", self, "update_score")
 	if $paddle.lifes != 0:
 		yield(get_tree().create_timer(0.25), "timeout")
 		call_deferred("add_child", ball)
@@ -45,6 +60,7 @@ func call_for_ball():
 func reset_properties():
 	$paddle.lifes = 3
 	$paddle.speed = 400
+	score = 0
 	$HUD/score_display.text = "0"
 	
 func new_game():
