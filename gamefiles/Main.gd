@@ -18,17 +18,22 @@ func get_colored_brick(color):
 	var colored_brick = colored_brick_scene.instance()
 	return colored_brick
 	
-func place_bricks():
+func place_brick(brick, position_x, position_y):
+	brick.set_position(Vector2(position_x, position_y))
+	call_deferred("add_child", brick)
+	
+func generate_brick_wall():
+	var row_color_pattern = ["red", "red", "orange", "orange", "green", "green", "yellow", "yellow"]
 	var position_y = 25
+	var current_color = ""
 	for row in 8:
 		var position_x = 62
+		current_color = row_color_pattern[row]
 		for n in 10:
 			if n != 0:
 				position_x += 100
-				
-			#brick.set_position(Vector2(position_x, position_y))
-			#call_deferred("add_child", brick)
-			
+			var brick = get_colored_brick(current_color)
+			place_brick(brick, position_x, position_y)
 		position_y += 23
 
 func call_for_ball():
@@ -46,8 +51,7 @@ func new_game():
 	$HUD.toggle_start_button()
 	$HUD.toggle_main_display()
 	reset_properties()
-	#place_bricks()
-	print(get_colored_brick("red"))
+	generate_brick_wall()
 	update_life_display()
 	call_for_ball()
 
