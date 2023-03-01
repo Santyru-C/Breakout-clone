@@ -1,5 +1,5 @@
 extends KinematicBody2D
-
+signal ball_collided(body)
 export (int) var speed = 400
 
 var rng = RandomNumberGenerator.new()
@@ -21,6 +21,7 @@ func _physics_process(delta):
 	if collides:
 		direction = direction.bounce(collides.normal)
 		if "brick" in collides.collider.get_name():
+			emit_signal("ball_collided", collides.collider)
 			collides.collider.queue_free()
 
 
