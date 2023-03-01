@@ -7,19 +7,27 @@ func update_life_display():
 	var player_lifes = $paddle.lifes
 	$HUD/life_display.text = format_text % str(player_lifes)
 	
+func get_red_brick():
+	var red_brick_scene = load("res://scenes/red_brick.tscn")
+	var red_brick = red_brick_scene.instance()
+	return red_brick
+	
+func get_colored_brick(color):
+	var formated_string = "res://scenes/%s_brick.tscn" % color
+	var colored_brick_scene = load(formated_string)
+	var colored_brick = colored_brick_scene.instance()
+	return colored_brick
+	
 func place_bricks():
 	var position_y = 25
 	for row in 8:
 		var position_x = 62
 		for n in 10:
-			var brick_scene = load("res://scenes/brick.tscn")
-			var brick = brick_scene.instance()
-			
 			if n != 0:
 				position_x += 100
 				
-			brick.set_position(Vector2(position_x, position_y))
-			call_deferred("add_child", brick)
+			#brick.set_position(Vector2(position_x, position_y))
+			#call_deferred("add_child", brick)
 			
 		position_y += 23
 
@@ -38,7 +46,8 @@ func new_game():
 	$HUD.toggle_start_button()
 	$HUD.toggle_main_display()
 	reset_properties()
-	place_bricks()
+	#place_bricks()
+	print(get_colored_brick("red"))
 	update_life_display()
 	call_for_ball()
 
