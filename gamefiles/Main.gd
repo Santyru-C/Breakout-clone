@@ -82,6 +82,9 @@ func new_game():
 	$HUD.toggle($HUD/start_button)
 	$HUD.toggle($HUD/main_display)
 	$HUD.toggle($HUD/final_score)
+	$HUD.toggle($HUD/highscore)
+	$HUD.toggle($HUD/score_display)
+	$HUD.toggle($HUD/life_display)
 	reset_properties()
 	generate_brick_wall()
 	update_life_display()
@@ -90,10 +93,11 @@ func new_game():
 func game_over():
 	var current_highscore = load_highscore()
 	if int(current_highscore) >= score:
-		print(current_highscore)
+		$HUD/highscore.text = "Highscore: %s" % current_highscore
 	else:
-		print(score)
+		$HUD/highscore.text = "Highscore: %s" % str(score)
 		save_highscore(str(score))
+		
 	$paddle.speed = 0
 	get_tree().call_group("bricks", "queue_free")
 	$HUD/main_display.text = "Game Over!"
@@ -101,6 +105,9 @@ func game_over():
 	$HUD.toggle($HUD/start_button)
 	$HUD.toggle($HUD/main_display)
 	$HUD.toggle($HUD/final_score)
+	$HUD.toggle($HUD/highscore)
+	$HUD.toggle($HUD/score_display)
+	$HUD.toggle($HUD/life_display)
 	
 func _ready():
 	pass
