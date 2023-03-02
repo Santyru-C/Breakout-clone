@@ -18,10 +18,10 @@ func get_input ():
 	if Input.is_action_pressed("ui_left"):
 		direction.x = -1
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	get_input()
 	velocity = (direction * speed)
-	velocity = move_and_slide(velocity)
+	velocity = move_and_collide(velocity * delta)
 	
 func _ready():
 	pass # Replace with function body.
