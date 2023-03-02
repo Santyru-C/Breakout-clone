@@ -79,12 +79,7 @@ func reset_properties():
 	$HUD/score_display.text = "Score: 0"
 	
 func new_game():
-	$HUD.toggle($HUD/start_button)
-	$HUD.toggle($HUD/main_display)
-	$HUD.toggle($HUD/final_score)
-	$HUD.toggle($HUD/highscore)
-	$HUD.toggle($HUD/score_display)
-	$HUD.toggle($HUD/life_display)
+	$HUD.toggle_display()
 	reset_properties()
 	generate_brick_wall()
 	update_life_display()
@@ -102,12 +97,7 @@ func game_over():
 	get_tree().call_group("bricks", "queue_free")
 	$HUD/main_display.text = "Game Over!"
 	$HUD/final_score.text = "Score: %s" % str(score)
-	$HUD.toggle($HUD/start_button)
-	$HUD.toggle($HUD/main_display)
-	$HUD.toggle($HUD/final_score)
-	$HUD.toggle($HUD/highscore)
-	$HUD.toggle($HUD/score_display)
-	$HUD.toggle($HUD/life_display)
+	$HUD.toggle_display()
 	
 func _ready():
 	pass
