@@ -2,6 +2,21 @@ extends Node
 
 var ball_scene = load("res://scenes/ball.tscn")
 var score = 0
+const SAVE_FILE = "user://save_file.dat"
+
+func save_highscore(highscore):
+	var file = File.new()
+	file.open("user://save_file.dat", File.WRITE)
+	file.store_string(highscore)
+	file.close()
+	
+func load_highscore():
+	var file = File.new()
+	file.open("user://save_file.dat", File.READ)
+	var content = file.get_as_text()
+	file.close()
+	return content
+
 func update_life_display():
 	var format_text = "Lifes: %s"
 	var player_lifes = $paddle.lifes
@@ -48,7 +63,7 @@ func get_score(brick):
 func update_score(destroyed_brick):
 	var brick = destroyed_brick.get_name().get_slice("@", 1)
 	score += get_score(brick)
-	$HUD/score_display.text = str(score)
+	$HUD/score_display.text = "Score: %s" % str(score)
 	
 func call_for_ball():
 	var ball = ball_scene.instance()
@@ -61,7 +76,7 @@ func reset_properties():
 	$paddle.lifes = 3
 	$paddle.speed = 400
 	score = 0
-	$HUD/score_display.text = "0"
+	$HUD/score_display.text = "Score: 0"
 	
 func new_game():
 	$HUD.toggle($HUD/start_button)
@@ -73,10 +88,16 @@ func new_game():
 	call_for_ball()
 
 func game_over():
+	var current_highscore = load_highscore()
+	if int(current_highscore) >= score:
+		print(current_highscore)
+	else:
+		print(score)
+		save_highscore(str(score))
 	$paddle.speed = 0
 	get_tree().call_group("bricks", "queue_free")
 	$HUD/main_display.text = "Game Over!"
-	$HUD/final_score.text = "Final Score: %s" % str(score)
+	$HUD/final_score.text = "Score: %s" % str(score)
 	$HUD.toggle($HUD/start_button)
 	$HUD.toggle($HUD/main_display)
 	$HUD.toggle($HUD/final_score)
