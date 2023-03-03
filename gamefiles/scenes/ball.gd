@@ -20,11 +20,6 @@ func _physics_process(delta):
 	
 	if collides:
 		direction = direction.bounce(collides.normal)
+		emit_signal("ball_collided", collides.collider)
 		if "brick" in collides.collider.get_name():
-			emit_signal("ball_collided", collides.collider)
 			collides.collider.queue_free()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

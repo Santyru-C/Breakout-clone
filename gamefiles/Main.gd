@@ -59,7 +59,18 @@ func get_score(brick):
 						"red_brick": 7}
 						
 	return brick_scores[brick]
+
+func shrink_paddle():
+	$paddle.scale.x *= 0.75
 	
+func check_collision(object):
+	if "brick" in object.get_name():
+		update_score(object)
+	elif "wall_top" in object.get_name():
+		shrink_paddle()
+	else:
+		pass
+
 func update_score(destroyed_brick):
 	var brick = destroyed_brick.get_name().get_slice("@", 1)
 	score += get_score(brick)
@@ -67,7 +78,7 @@ func update_score(destroyed_brick):
 	
 func call_for_ball():
 	var ball = ball_scene.instance()
-	ball.connect("ball_collided", self, "update_score")
+	ball.connect("ball_collided", self, "check_collision")
 	if $paddle.lifes != 0:
 		yield(get_tree().create_timer(0.25), "timeout")
 		call_deferred("add_child", ball)
