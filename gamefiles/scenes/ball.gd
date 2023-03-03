@@ -19,6 +19,8 @@ func _physics_process(delta):
 	var collides = move_and_collide(velocity * delta)
 	
 	if collides:
+		if  $AudioStreamPlayer.playing == false:
+			$AudioStreamPlayer.play()
 		direction = direction.bounce(collides.normal)
 		emit_signal("ball_collided", collides.collider)
 		if "brick" in collides.collider.get_name():
