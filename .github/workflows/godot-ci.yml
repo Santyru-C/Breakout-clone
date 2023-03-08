@@ -48,6 +48,6 @@ jobs:
       - name: Deploy to GitHub Pages 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
-          GITHUB_TOKEN: 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
+          GITHUB_TOKEN: https://Santyru-C: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@github.com/Santyru-C/Breakout-clone.git
           BRANCH: main # The branch the action should deploy to.
           FOLDER: build/web # The folder the action should deploy.
