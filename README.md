@@ -26,7 +26,7 @@ Exploring Breakout's arcade era gameplay and mechanics is also an important fact
 - The score should be displayed, as well as a life counter. The player starts with three lives. If the player misses the ball, a life should be subtracted. When all lives are used, the game ends.
 
 ## Project Status
-In progress
+Complete
 
 ## Acknowledgements
 - This project is based on [this challenge](https://20_games_challenge.gitlab.io/challenge/#2).
