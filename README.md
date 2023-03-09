@@ -1,5 +1,6 @@
 # Breakout-clone
 Breakout clone made using godot game-engine and gs.
+> Live demo [_here_](https://santyru-c.github.io/Breakout-clone/)
 
 ## General Information
 This project consists of a modern imitation of the first and only level of the popular arcade game Breakout and it
@@ -9,7 +10,8 @@ The main purpose of this project is to familiarize myself with Godot and its too
 skills and to test my linear algebra knowledge.
 Exploring Breakout's arcade era gameplay and mechanics is also an important factor to take into account.
 
-
+## Screenshots
+![Example screenshot](./game_screenshot.png)
 
 ## Technologies Used
 - Godot game engine - v3.5.1
@@ -27,6 +29,9 @@ Exploring Breakout's arcade era gameplay and mechanics is also an important fact
 
 ## Project Status
 Complete
+
+Export files are scattered in the root folder to allow github pages to properly load a live demo. This is not optimal nor
+recommended but is a solution as I tinker whit github actions for automatized exports with godot.
 
 ## Acknowledgements
 - This project is based on [this challenge](https://20_games_challenge.gitlab.io/challenge/#2).
